@@ -2,25 +2,117 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --brand-cream: #ffffff;
+  --brand-charcoal: #000000;
+  --brand-border: #e5e5e5;
+  --brand-accent: #767676;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-charcoal: var(--brand-charcoal);
+  --color-brand-border: var(--brand-border);
+  --color-brand-accent: var(--brand-accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
+    --brand-cream: #000000;
+    --brand-charcoal: #ffffff;
+    --brand-border: #262626;
+    --brand-accent: #a3a3a3;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
+
+/* Tipografia Editorial Zara Style */
+.font-editorial {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Utilitários Minimalistas de Alta Costura */
+.zara-border {
+  border: 1px solid var(--brand-border);
+}
+
+.zara-btn {
+  background-color: var(--brand-charcoal);
+  color: var(--brand-cream);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--brand-charcoal);
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.75rem;
+  border-radius: 0px !important;
+}
+
+.zara-btn:hover {
+  opacity: 0.8;
+}
+
+.zara-btn-secondary {
+  background-color: transparent;
+  color: var(--brand-charcoal);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.75rem;
+  border: 1px solid var(--brand-charcoal);
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.75rem;
+  border-radius: 0px !important;
+}
+
+.zara-btn-secondary:hover {
+  background-color: var(--brand-charcoal);
+  color: var(--brand-cream);
+}
+
+/* Transições e Fade-In suaves */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
