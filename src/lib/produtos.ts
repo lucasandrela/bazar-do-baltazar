@@ -65,7 +65,7 @@ export const PRODUTOS: Produto[] = [
   },
   {
     "id": 7,
-    "title": "Jaqueta Jeans Oversized",
+    "title": "Jeans Oversized",
     "description": "Jeans pesado estonado dos anos 80, sem elastano. Dois bolsos frontais e modelagem unissex.",
     "price": 199.90,
     "imageSrc": "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=500&auto=format&fit=crop&q=80",

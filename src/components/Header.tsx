@@ -4,10 +4,16 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "./CartContext";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Header() {
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const pathname = usePathname();
   const { setIsCartOpen, cartCount } = useCart();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
     { label: "Início", path: "/" },
@@ -16,7 +22,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white dark:bg-black text-black dark:text-white border-b border-brand-border transition-colors duration-300">
+    <header className="relative w-full top-0 z-40 bg-white dark:bg-black text-black dark:text-white border-b border-brand-border transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         
         {/* Navigation - Left on Desktop */}
@@ -38,21 +44,31 @@ export default function Header() {
             );
           })}
         </nav>
-
-        {/* Mobile menu - Left */}
-        <div className="md:hidden flex items-center gap-4">
-          {menuItems.map((item) => (
-            <Link
-              key={item.path}
-              href={item.path}
-              className={`text-[10px] uppercase tracking-[0.15em] ${
-                pathname === item.path ? "font-bold opacity-100" : "opacity-60"
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] opacity-80 hover:opacity-100 transition-opacity cursor-pointer py-2"
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+        >
+          {isOpen ? <X className="text-black dark:text-white" /> : <Menu className="text-black dark:text-white" />}
+        </button>
+        {/* Mobile menu - Dropdown */}
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full bg-white dark:bg-black border-t border-brand-border py-4 flex flex-col items-center gap-4 md:hidden">
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-[10px] uppercase tracking-[0.15em] ${
+                  pathname === item.path ? "font-bold opacity-100" : "opacity-60"
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        )}
+        
 
         {/* Logo - Centered */}
         <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
